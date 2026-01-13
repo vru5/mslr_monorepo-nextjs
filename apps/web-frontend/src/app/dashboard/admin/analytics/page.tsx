@@ -19,7 +19,7 @@ export default function AnalyticsPage() {
     const token = localStorage.getItem("token");
     try {
       // Note: Ensure this matches the route where you get the data
-      const res = await fetch("http://localhost:3001/mslr/admin/all", {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/admin/all`, {
         headers: { Authorization: `Bearer ${token}` }
       });
       const data = await res.json();

@@ -17,7 +17,7 @@ const CreateReferendum = () => {
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:3001/mslr/admin/create", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/admin/create`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",

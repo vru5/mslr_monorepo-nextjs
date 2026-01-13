@@ -34,7 +34,7 @@ const VoterDashboard = () => {
     const fetchOpen = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await fetch("http://localhost:3001/mslr/vote/available", {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/vote/available`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const data = await res.json();
@@ -70,7 +70,7 @@ const VoterDashboard = () => {
     setIsSubmitting(referendumId);
     try {
       const token = localStorage.getItem("token");
-      const res = await fetch(`http://localhost:3001/mslr/vote/cast/${referendumId}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/vote/cast/${referendumId}`, {
         method: "POST",
         headers: { 
           "Content-Type": "application/json",

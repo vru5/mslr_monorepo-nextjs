@@ -57,7 +57,7 @@ const ForgotPasswordPage = () => {
   const onVerify = async (values: z.infer<typeof verifySchema>) => {
     setIsVerifying(true);
     try {
-      const response = await fetch("http://localhost:3001/mslr/auth/verify-reset", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/auth/verify-reset`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values)
@@ -82,7 +82,7 @@ const ForgotPasswordPage = () => {
     try {
       const email = verifyForm.getValues("email");
 
-      const response = await fetch("http://localhost:3001/mslr/auth/update-password", {
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/auth/update-password`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
