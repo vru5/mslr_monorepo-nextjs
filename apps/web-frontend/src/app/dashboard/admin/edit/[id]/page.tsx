@@ -22,7 +22,7 @@ export default function EditReferendum() {
     const fetchRef = async () => {
       const token = localStorage.getItem("token");
       try {
-        const res = await fetch(`http://localhost:3001/mslr/admin/all`, {
+        const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/admin/all`, {
           headers: { Authorization: `Bearer ${token}` }
         });
         const all = await res.json();
@@ -64,7 +64,7 @@ export default function EditReferendum() {
         referendum_options: values.referendum_options.map(o => ({ text: o.text, votes: 0 })) 
       };
 
-      const res = await fetch(`http://localhost:3001/mslr/admin/edit/${id}`, {
+      const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/admin/edit/${id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

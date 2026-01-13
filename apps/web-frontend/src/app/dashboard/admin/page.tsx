@@ -33,7 +33,7 @@ const AdminDashboard = () => {
     const fetchReferendums = async () => {
         try {
             const token = localStorage.getItem("token");
-            const response = await fetch("http://localhost:3001/mslr/admin/all", {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/admin/all`, {
                 headers: { Authorization: `Bearer ${token}`},
             });
 
@@ -53,7 +53,7 @@ const AdminDashboard = () => {
     const updateStatus = async (id: string, newStatus: string) => {
     try {
         const token = localStorage.getItem("token");
-        const response = await fetch(`http://localhost:3001/mslr/admin/${id}/status`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/admin/${id}/status`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

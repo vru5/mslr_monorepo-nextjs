@@ -93,7 +93,7 @@ const RegisterPage = () => {
 
     const onSubmit = async (values: z.infer<typeof registrationSchema>) => {
         try {
-            const response = await fetch("http://localhost:3001/mslr/auth/register", {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/auth/register`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values)

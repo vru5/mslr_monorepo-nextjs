@@ -29,7 +29,7 @@ const LoginPage = () => {
 
     const onSubmit = async (values: z.infer<typeof loginSchema>) => {
         try{
-            const response = await fetch("http://localhost:3001/mslr/auth/login", {
+            const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/mslr/auth/login`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(values)
