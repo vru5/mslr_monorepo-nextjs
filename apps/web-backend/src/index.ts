@@ -12,10 +12,11 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 const MONGO_URI = process.env.MONGO_URI;
+const allowed = [process.env.FRONTEND_URL];
 
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:3000' }));
+app.use(cors({ origin: allowed, credentials: true }));
 app.use(express.json());
 app.use('/mslr/auth', authRoutes)
 app.use('/mslr/admin', referendumRoutes);
