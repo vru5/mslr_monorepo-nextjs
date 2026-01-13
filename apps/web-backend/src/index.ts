@@ -12,12 +12,14 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 const MONGO_URI = process.env.MONGO_URI;
-const allowedOrigins = [process.env.FRONTEND_URL, 'http://localhost/3000'].filter((origin): origin is string => Boolean(origin));
-
 
 
 // Middleware
-app.use(cors({ origin: allowedOrigins }));
+app.use(cors({
+  origin: "*", // ✅ allows all origins
+  credentials: true // include if you need cookies or auth headers
+}));
+
 app.use(express.json());
 app.use('/mslr/auth', authRoutes)
 app.use('/mslr/admin', referendumRoutes);
