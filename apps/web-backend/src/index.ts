@@ -12,11 +12,27 @@ dotenv.config();
 const app = express();
 const PORT = process.env.PORT || 3001;
 const MONGO_URI = process.env.MONGO_URI;
-
+const allowedOrigins = [
+  'http://localhost:3000',
+  process.env.FRONTEND_URL // This will be your Vercel URL
+].filter(Boolean) as string[];
 
 // Middleware
 app.use(cors({
-  origin: "*"
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps or server-to-server)
+    if (!origin) return callback(null, true);
+    
+    if (allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      console.error(`CORS Blocked: Origin ${origin} not in allowed list`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
 app.use(express.json());
