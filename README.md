@@ -64,11 +64,6 @@ Install the required packages: npm install
 
 Create a .env.example file: Include the keys but leave the values blank or use placeholders. Input your db credentials.
 
-Code snippet:
-    PORT=3001
-    MONGO_URI=mongodb+srv://<username>:<password>@m0.erewl9w.mongodb.net/mslr_db?appName=M0
-    JWT_SECRET=MSLR_JWT_SECRET_TOKEN
-
   you can input your mongo url by:
 
   Step 1: Login into your mongo atlas
